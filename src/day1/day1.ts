@@ -1,4 +1,4 @@
-import path from "path";
+import { readFile } from "../readFile";
 
 const patternLeftToRight = /\d|one|two|three|four|five|six|seven|eight|nine/g;
 const patternRightToLeft = /\d|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin/g;
@@ -44,8 +44,7 @@ const convertDigitWrittenInLetterToDigit = (digit: string): string => {
   return digitWrittenInLetter[digit];
 };
 
-const filePath = path.join(import.meta.dir, "day1.txt");
-const lines = (await Bun.file(filePath).text()).split("\n");
+const lines = await readFile("day1/day1.txt");
 
 const sumOfDigits = lines.reduce((acc, line) => {
   const { firstDigit, lastDigit } =
